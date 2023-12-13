@@ -83,5 +83,19 @@ public class SchematicGrid
 
         return newTexture;
     }
+
+    public SchematicGrid flipGrid(SchematicGrid input) {
+
+        SchematicGrid newGrid = new SchematicGrid();
+
+        int topLayer = 0;
+
+        for (int i = topLayer; i >= 0; i--) {
+            for (int j = 0; j < 99; j++) {
+                newGrid.grid[i,j] = input.grid[topLayer - i,j];
+            }
+        }
+        return newGrid;
+    }
 }
 

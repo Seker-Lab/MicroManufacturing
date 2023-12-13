@@ -36,6 +36,9 @@ public class TextManager : MonoBehaviour
     private KeyCode advanceTextKeycode = KeyCode.Space;
     private KeyCode backTextKeycode = KeyCode.LeftShift;
 
+    private bool advanceButton = false;
+    private bool backTextButton = false;
+
     public void EvokeText(TextParent[] _Text)
     {
         if (!isPlayingText)
@@ -134,7 +137,8 @@ public class TextManager : MonoBehaviour
 
     private IEnumerator WaitForPlayerInput()
     {
-        while ((!Input.GetKeyDown(advanceTextKeycode) && !Input.GetKeyDown(backTextKeycode) && holdFlag == false && skipFlag == false) || control.isPaused() == control.pauseStates.menuPaused)
+
+        while ((!advanceButton && !backTextButton && !Input.GetKeyDown(advanceTextKeycode) && !Input.GetKeyDown(backTextKeycode) && holdFlag == false && skipFlag == false) || control.isPaused() == control.pauseStates.menuPaused)
         {
             if(skipOnObjFlag != "" && GameObject.Find(skipOnObjFlag)){
                 skipOnObjFlag = "";
@@ -142,13 +146,28 @@ public class TextManager : MonoBehaviour
             }
             yield return null;
         }
-        if (Input.GetKeyDown(advanceTextKeycode))
+        if (Input.GetKeyDown(advanceTextKeycode) || advanceButton)
         {
             goForward = true;
+            advanceButton = false;
         }
-        if (Input.GetKeyDown(backTextKeycode))
+        if (Input.GetKeyDown(backTextKeycode) || backTextButton)
         {
             goForward = false;
+            backTextButton = false;
         }
+    }
+
+    public void onAdvanceButton()
+    {
+        advanceButton = true;
+        WaitForPlayerInput();
+        Debug.Log("advance");
+    }
+
+    public void onBackButton()
+    {
+        backTextButton = true;
+        WaitForPlayerInput();
     }
 }

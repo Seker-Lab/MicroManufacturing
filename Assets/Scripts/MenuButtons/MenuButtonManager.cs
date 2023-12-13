@@ -6,17 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtonManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool mobileUI = true;
 
     public void OnStartButtonPress()
     {
@@ -72,6 +62,20 @@ public class MenuButtonManager : MonoBehaviour
         {
             Screen.fullScreen = true;
             GameObject.Find("FullScreenButton").GetComponent<TextMeshProUGUI>().text = "Windowed Mode";
+        }
+    }
+
+    public void OnMobileToggle()
+    {
+        if (mobileUI)
+        {
+            mobileUI = false;
+            GameObject.Find("Mobile UI").GetComponent<TextMeshProUGUI>().text = "Mobile off";
+        }
+        else
+        {
+            mobileUI = true;
+            GameObject.Find("Mobile UI").GetComponent<TextMeshProUGUI>().text = "Mobile on";
         }
     }
 

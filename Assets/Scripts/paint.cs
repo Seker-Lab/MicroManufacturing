@@ -58,7 +58,7 @@ public class paint : MonoBehaviour
         texture = new Texture2D((int) trans.sizeDelta.x, (int)trans.sizeDelta.y, TextureFormat.RGBA32, false);
         oldTexture = new Texture2D((int)trans.sizeDelta.x, (int)trans.sizeDelta.y, TextureFormat.RGBA32, false);
         updateScale();
-        scaleFactor = 3;
+        scaleFactor = 5;
         for (int i = 0; i < BitGrid.gridWidth; i++)
         {
             for(int j = 0; j< BitGrid.gridHeight; j++)
@@ -186,12 +186,8 @@ public class paint : MonoBehaviour
         float width = scaleFactor * BitGrid.gridWidth;
         float height = scaleFactor * BitGrid.gridHeight;
 
-
         float onCanvasX = mx - (centerX - width * 0.5f);
         float onCanvasY = my - (centerY - height * 0.5f);
-
-
-
 
         toReturn.x = Mathf.Round(onCanvasX / scaleFactor);
         toReturn.y = Mathf.Round(onCanvasY / scaleFactor);
@@ -216,7 +212,6 @@ public class paint : MonoBehaviour
             toReturn.z = -1;
         }
 
-        //Debug.Log(toReturn.x + ", " + toReturn.y);
         return toReturn;
     }
 
@@ -231,7 +226,7 @@ public class paint : MonoBehaviour
             minDist = height;
         }
         scaleFactor = (int) Mathf.Floor((float) minDist / BitGrid.gridWidth);*/
-        trans.sizeDelta = new Vector2(scaleFactor*BitGrid.gridWidth / trans.lossyScale.x, scaleFactor * BitGrid.gridHeight / trans.lossyScale.y);
+        trans.sizeDelta = new Vector2(scaleFactor * BitGrid.gridWidth / trans.lossyScale.x, scaleFactor * BitGrid.gridHeight / trans.lossyScale.y);
         GameObject.Find("camera_panel").GetComponent<RectTransform>().sizeDelta= trans.sizeDelta;
         //Debug.Log(scaleFactor);
 

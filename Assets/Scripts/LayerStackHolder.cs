@@ -23,6 +23,7 @@ public class LayerStackHolder : MonoBehaviour
     public GameObject processEtchPrefab;
     public GameObject processWetEtchPrefab;
     public GameObject processIonEtchPrefab;
+    public GameObject processCastPrefab;
 
     //constant, the height in pixels of a layer
     public float layerHeight;
@@ -115,6 +116,9 @@ public class LayerStackHolder : MonoBehaviour
 
     }
 
+    public void startCastProcess() {
+        Instantiate(processCastPrefab, transform.position, transform.rotation).gameObject.name = "New Process";
+    }
 
     //deposits marked for deletion are only cleared at the end of each game step so they don't interfere with other functions
     void LateUpdate()
@@ -615,8 +619,6 @@ public class LayerStackHolder : MonoBehaviour
     end.x corresponds to the horizontal layer of the ending point,
     while end.y & end.z correspond to the end.
     */
-
-
     bool connectionLoop(Vector3Int start, Vector3Int end, bool[,,] explored, bool[,,] conductive)
     {
         // similar approach to BitGrid.fill
@@ -763,15 +765,8 @@ public class LayerStackHolder : MonoBehaviour
         return connectionLoop(start, end, explored, conductive);
     }
 
-    public void onConductivityButton()
-    {
-        GameObject probes = GameObject.Find("probes");
-        bool result = probes.GetComponent<ProbeScript>().getConectionStatus();
-        Debug.Log(result);
-    }
-
+    /* Material to color index */
     public int matToColor(control.materialType mat) {
-
         switch (mat)
         {
             case control.materialType.chromium:
@@ -794,7 +789,6 @@ public class LayerStackHolder : MonoBehaviour
 
     public SchematicGrid crossSectionFromDepth(int depth)
     {
-
         if (depth < 0 || depth > 99)
             return SchematicGrid.zeros();
 
@@ -825,5 +819,63 @@ public class LayerStackHolder : MonoBehaviour
         return crossSection;
     }
 
+    public bool[,,] generateMold(int depth = 3)
+    {
+
+        int effectiveTop = topLayer + 2;
+        if (effectiveTop > 100)
+        {
+            effectiveTop = 100;
+        }
+
+        /* mold contains every point that will have material */
+        bool[,,] mold = new bool[effectiveTop, 100, 100];
+
+        for (int i = 0; i < depth + topLayer; i++)
+        {
+            for (int j = 0; j < 100; j++)
+            {
+                for (int k = 0; k < 100; k++)
+                {
+                    mold[i, j, k] = true;
+                }
+            }
+        }
+
+        for (int layer = 0; layer < effectiveTop; layer++)
+        {
+            List<GameObject> depLayer = depLayers[layer];
+            for (int i = 0; i < depLayer.Count(); i++)
+            {
+                BitGrid grid = depLayer[i].GetComponent<meshGenerator>().grid;
+                for (int j = 0; j < 100; j++)
+                {
+                    for (int k = 0; k < 100; k++)
+                    {
+                        if (grid.getPoint(j, k) != 0)
+                        {
+                            mold[layer, j, k] = false;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        return mold;
+    }
+
+    public SchematicGrid generateStamp(bool[,,] mold) {
+        SchematicGrid stamp = SchematicGrid.zeros();
+
+        int printMaterial = 1;
+        for (int i = 0; i < 100; i++) {
+            for (int k = 0; k < 100; k++) {
+                stamp.setPoint(i, k, printMaterial);
+            }
+        }
+
+        return stamp;
+    }
 }
 

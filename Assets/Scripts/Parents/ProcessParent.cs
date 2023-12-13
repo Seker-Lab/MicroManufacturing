@@ -107,11 +107,11 @@ public class ProcessParent : MonoBehaviour
 
         finishButton = Instantiate(finishButtonPrefab, transform.position, transform.rotation);
         finishButton.transform.SetParent(canvTrans, false);
-        finishButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100, 100, 0);
+        finishButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-200, 100, 0);
 
         cancelButton = Instantiate(cancelButtonPrefab, transform.position, transform.rotation);
         cancelButton.transform.SetParent(canvTrans, false);
-        cancelButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100, 50, 0);
+        cancelButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-200, 50, 0);
 
         if (DropdownPreset)
         {

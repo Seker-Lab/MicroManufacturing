@@ -14,6 +14,8 @@ public class globalSceneManager : MonoBehaviour
     string targetSceneFromLevel;
     public bool optionsMenuFlag;
 
+    public int downButton = 0;
+
     public struct layerData
     {
         public BitGrid grid;
@@ -323,7 +325,7 @@ public class globalSceneManager : MonoBehaviour
             newPrint.transform.parent = GameObject.Find("Canvas - Tutorial Text").transform;
             newPrint.GetComponentInChildren<TextMeshProUGUI>().text = curState.blueprintName;
             newPrint.transform.GetChild(0).GetComponent<Image>().sprite = curState.blueprintSprite;
-            newPrint.transform.position = new Vector3(UnityEngine.Screen.width / 2, UnityEngine.Screen.height / 2, 0);
+            newPrint.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         }
 
         GameObject.Find("Canvas - Main").transform.Find("Dropdown").gameObject.GetComponent<DropdownCustom>().initialize();
@@ -354,5 +356,13 @@ public class globalSceneManager : MonoBehaviour
         }
     }
 
+    public void UpdateDeviceType(int input)
+    {
+        downButton = input;
+    }
+
+    public void AdjustScreen(int width, int height) {
+        Screen.SetResolution(width, height, false, 60);
+     }
 
 }

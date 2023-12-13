@@ -250,7 +250,6 @@ public class control : MonoBehaviour
         }
     }
 
-
     public void onExitPauseMenu()
     {
         if (paused != pauseStates.menuPaused) // if it is not paused, paused the game
@@ -300,8 +299,7 @@ public class control : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
-        public void onDrawMenuButton()
+    public void onDrawMenuButton()
     {
         hudVisible = !hudVisible;
         if (!hudVisible)
@@ -383,7 +381,6 @@ public class control : MonoBehaviour
     {
         GameObject proc = GameObject.Find("New Process");
         proc.GetComponent<ProcessParent>().onFinishedButton();
-
     }
 
     public void onCancelButton()
@@ -419,4 +416,21 @@ public class control : MonoBehaviour
         Debug.Log(layer.GetComponent<LayerStackHolder>().getConnectionStatus(new Vector3Int(0,0,0), new Vector3Int(3,3,3)));
     }
 
+    public void onCastButton() {
+        GameObject layer = GameObject.Find("LayerStack");
+        layer.GetComponent<LayerStackHolder>().startCastProcess();
+    }
+
+    public void onMobileToggle() {
+
+        if (GameObject.Find("Shift"))
+        {
+            GameObject.Find("Shift").gameObject.SetActive(false);
+            GameObject.Find("Space").gameObject.SetActive(false);
+        }
+        else {
+            GameObject.Find("Shift").gameObject.SetActive(true);
+            GameObject.Find("Space").gameObject.SetActive(true);
+        }
+    }
 }

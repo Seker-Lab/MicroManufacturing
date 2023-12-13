@@ -198,8 +198,6 @@ public class levelRequirementManager : MonoBehaviour
     //checks all of the requirements for completion and updates the display accordingly. This should be called whenever a new change occures to the level
     //will update this once we have the correct assets for the display tab
 
-
-    
     public void checkRequirements(bool outsideEdits = false)
     {
         int index = 0;

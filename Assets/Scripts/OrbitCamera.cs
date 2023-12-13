@@ -23,11 +23,14 @@ public class OrbitCamera : MonoBehaviour
 
 	bool succesfulClick;
 
+	int downButton = 0;
+
 	void Start()
 	{
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		lockedOut = false;
 		succesfulClick = false;
+		//downButton = GameObject.Find("Global Scene Manager").GetComponent<globalSceneManager>().downButton;
 	}
 
     void ManualRotation()
@@ -45,7 +48,8 @@ public class OrbitCamera : MonoBehaviour
 
 	void LateUpdate()
 	{
-        if (control.isPaused() != control.pauseStates.menuPaused)
+		downButton = GameObject.Find("Global Scene Manager").GetComponent<globalSceneManager>().downButton;
+		if (control.isPaused() != control.pauseStates.menuPaused)
         {
             ManualRotation();
         }
@@ -60,14 +64,14 @@ public class OrbitCamera : MonoBehaviour
 
 		EventSystem eventSys = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 
-		if (Input.GetMouseButtonDown(0) && ! (eventSys.IsPointerOverGameObject() || lockedOut))
+		if (Input.GetMouseButtonDown(downButton) && ! (eventSys.IsPointerOverGameObject() || lockedOut))
 		{
 			previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
 			succesfulClick = true;
 			//orbitAngles = new Vector2(cam.transform.rotation.x, cam.transform.rotation.y);
 
 		}
-		else if (Input.GetMouseButton(0) && succesfulClick)
+		else if (Input.GetMouseButton(downButton) && succesfulClick)
 		{
 			Vector3 newPosition = cam.ScreenToViewportPoint(Input.mousePosition);
 			Vector3 direction = previousPosition - newPosition;
@@ -87,7 +91,7 @@ public class OrbitCamera : MonoBehaviour
 			Vector3 pos = cam.transform.rotation.eulerAngles;
 
 			orbitAngles = new Vector2(pos.x, pos.y);
-		}else if (Input.GetMouseButtonUp(0))
+		}else if (Input.GetMouseButtonUp(downButton))
 		{
 			succesfulClick = false;
 		}
