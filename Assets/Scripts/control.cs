@@ -44,6 +44,7 @@ public class control : MonoBehaviour
     public Material m_silicon;
     public Material m_silicondioxide;
     public Material m_photoresist_comp;
+    public Material m_cast;
 
     public enum materialType
     {
@@ -54,7 +55,8 @@ public class control : MonoBehaviour
         silicon,
         silicondioxide,
         empty,
-        photoresistComplement
+        photoresistComplement,
+        cast
     }
 
     public GameObject PhotoResistEdge;
@@ -72,6 +74,7 @@ public class control : MonoBehaviour
         materialsList.Add(materialType.silicon, new materialData(m_silicon, 0));
         materialsList.Add(materialType.silicondioxide, new materialData(m_silicondioxide, 0));
         materialsList.Add(materialType.photoresistComplement, new materialData(m_photoresist_comp, 0));
+        materialsList.Add(materialType.cast, new materialData(m_cast, 0));
         hudVisible = false;
         showMeasureSticks = false;
         ms1 = GameObject.Find("measure stick 1");
@@ -419,6 +422,12 @@ public class control : MonoBehaviour
     public void onCastButton() {
         GameObject layer = GameObject.Find("LayerStack");
         layer.GetComponent<LayerStackHolder>().startCastProcess();
+    }
+
+    public void onPeelButton()
+    {
+        GameObject layer = GameObject.Find("LayerStack");
+        layer.GetComponent<LayerStackHolder>().startPeelProcess();
     }
 
     public void onMobileToggle() {

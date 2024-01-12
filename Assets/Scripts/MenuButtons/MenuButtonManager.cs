@@ -99,6 +99,10 @@ public class MenuButtonManager : MonoBehaviour
         GameObject.Find("Global Scene Manager").GetComponent<globalSceneManager>().gotoFromMenu("Level4");
     }
 
+    public void lv5Button()
+    {
+        GameObject.Find("Global Scene Manager").GetComponent<globalSceneManager>().gotoFromMenu("Level5");
+    }
 
     public void onContinueButton()
     {

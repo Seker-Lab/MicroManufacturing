@@ -28,7 +28,7 @@ public class TextManager : MonoBehaviour
         }
         goForward = true;
         placeCount = GameObject.Find("placeCount");
-        placeCount.SetActive(false);
+        //placeCount.SetActive(false);
         skipFlag = false;
         skipOnObjFlag = "";
     }
@@ -106,13 +106,13 @@ public class TextManager : MonoBehaviour
                 }
                 else
                 {
-                    placeCount.SetActive(false);
+                    //placeCount.SetActive(false);
                 }
                 continue;
             }
             if (!goForward && i-1 >= 0)
             {
-                placeCount.SetActive(true);
+                //placeCount.SetActive(true);
                 i--;
                 if (_Text[i].GetType() == typeof(FreeText))
                 {
@@ -127,7 +127,7 @@ public class TextManager : MonoBehaviour
 
     void updatePlaceCount(int numerator, int denominator)
     {
-        placeCount.GetComponent<TextMeshProUGUI>().text = "(" + numerator + "/" + denominator + ")";
+        //placeCount.GetComponent<TextMeshProUGUI>().text = "(" + numerator + "/" + denominator + ")";
     }
     
     public GameObject GetTextBox()

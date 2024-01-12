@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ProcessGen : ProcessParent
 {
-
-
     public override bool CallStep(int i)
     {
         bool toReturn = false;

@@ -10,7 +10,7 @@ public class LayerStackHolder : MonoBehaviour
 
     public static int layerCount;
 
-    //an array of all of the layers. each index is a list of deposits at that layer
+    //an array of all of the layers. each index is a list of material deposits at that height
     public List<GameObject>[] depLayers;
 
     //the current highest layer reached by anything in the design. Deposits will start one above here
@@ -75,12 +75,6 @@ public class LayerStackHolder : MonoBehaviour
                 curMaterial = control.materialType.silicondioxide;
                 break;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     //external functions called by buttons
@@ -191,7 +185,7 @@ public class LayerStackHolder : MonoBehaviour
     }
 
 
-    //insterts a deposit of a material into a particular layer
+    //inserts a deposit of a material into a particular layer
     bool addDeposit(int curlayer, BitGrid toDeposit, control.materialType layerMaterial, int newTimeOffset = 0)
     {
         if (curlayer >= layerCount)
@@ -218,7 +212,7 @@ public class LayerStackHolder : MonoBehaviour
     //sets the BitGrid of a deposit to a new value, or destroys it if set to empty
     bool updateDeposit(BitGrid grid, GameObject deposit, int depLayer)
     {
-        if (!grid.isEmpty())
+        if (grid != null && !grid.isEmpty())
         {
             deposit.GetComponent<meshGenerator>().grid.set(grid);
             deposit.GetComponent<meshGenerator>().initialize();
@@ -230,7 +224,7 @@ public class LayerStackHolder : MonoBehaviour
             deposit.GetComponent<meshGenerator>().toBeDestroyed = true;
             Destroy(deposit);
         }
-        return !grid.isEqual(deposit.GetComponent<meshGenerator>().grid);
+        return grid != null && !grid.isEqual(deposit.GetComponent<meshGenerator>().grid);
     }
 
     //drops a 1 block layer of a material from the top, which cascades over any structures below
@@ -865,17 +859,120 @@ public class LayerStackHolder : MonoBehaviour
         return mold;
     }
 
-    public SchematicGrid generateStamp(bool[,,] mold) {
-        SchematicGrid stamp = SchematicGrid.zeros();
+    public void flipMaterials() {
+        int numLayers = topLayer + 1;
+        Debug.Log(numLayers);
+        if (numLayers > 100)
+        {
+            numLayers = 100;
+        }
 
-        int printMaterial = 1;
-        for (int i = 0; i < 100; i++) {
-            for (int k = 0; k < 100; k++) {
-                stamp.setPoint(i, k, printMaterial);
+        // swap each pair
+        for (int pair = 0; pair <= numLayers / 2; pair++)
+        {
+            Debug.Log(pair + " " + (numLayers - pair));
+
+            // move amount
+            int layersToMove = 2 * (numLayers / 2 - pair);
+
+            // move top layer down
+            List<GameObject> depLayer = depLayers[numLayers - pair - 1];
+
+            for (int i = 0; i < depLayer.Count(); i++)
+            {
+                // move meshgenerator to correct location
+                depLayer[i].GetComponent<meshGenerator>().transform.position -= new Vector3(0, layerHeight * layersToMove, 0);
+            }
+
+            // move bottom layer up
+            depLayer = depLayers[pair];
+            for (int i = 0; i < depLayer.Count(); i++)
+            {
+                // move meshgenerator to correct location
+                depLayer[i].GetComponent<meshGenerator>().transform.position += new Vector3(0, layerHeight * layersToMove, 0);
+            }
+
+
+            // swap them
+            depLayers[pair] = depLayers[numLayers - pair - 1];
+            depLayers[numLayers - pair - 1] = depLayer;
+        }
+
+
+    }
+
+    public void dropMaterials()
+    {
+        int effectiveTop = topLayer + 2;
+        if (effectiveTop > 100)
+        {
+            effectiveTop = 100;
+        }
+
+        // find lowest point with material
+        int bottom = 0;
+        for (; bottom < effectiveTop; bottom++)
+        {
+            List<GameObject> depLayer = depLayers[bottom];
+            if (depLayer.Count > 0)
+                break;
+        }
+        Debug.Log(bottom);
+
+        if (bottom == 0)
+            return;
+        
+        // move down each layer
+        for (int layer = bottom; layer < effectiveTop; layer++)
+        {
+            List<GameObject> depLayer = depLayers[layer];
+            for (int i = 0; i < depLayer.Count(); i++)
+            {
+                GameObject mesh = depLayer[i];
+
+                // move meshgenerator down
+
+                mesh.GetComponent<meshGenerator>().transform.position -= new Vector3(0, layerHeight * bottom, 0);
+
+                // place mesh in correct deplayer
+                depLayers[layer - bottom].Add(mesh);
+            }
+
+            depLayer.Clear();
+        }
+        
+    }
+
+    /* Need to remove all non-PDMS material */
+    public void startPeelProcess()
+    {
+        int effectiveTop = topLayer + 2;
+        if (effectiveTop > 100)
+        {
+            effectiveTop = 100;
+        }
+
+        // remove non-PDMS material
+        for (int layer = 0; layer < effectiveTop; layer++)
+        {
+            List<GameObject> depLayer = depLayers[layer];
+            for (int i = 0; i < depLayer.Count(); i++)
+            {
+                if (depLayer[i].GetComponent<meshMaterial>().myMaterial != control.materialType.cast) {
+                    updateDeposit(BitGrid.zeros(), depLayer[i], layer);
+                }
             }
         }
 
-        return stamp;
+        // flip PDMS cast
+        //flipMaterials();
+
+        clearDeletes();
+
+        // move cast down
+        dropMaterials();
     }
+
+
 }
 
