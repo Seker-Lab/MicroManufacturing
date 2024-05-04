@@ -159,10 +159,6 @@ public class levelRequirementManager : MonoBehaviour
             float mouseX = UnityEngine.Input.mousePosition.x;
             float mouseY = UnityEngine.Input.mousePosition.y;
             RectTransform trans = display.GetComponent<RectTransform>();
-
-
-
-
             float width = requirementPrefab.GetComponent<RectTransform>().Width()/2;
             float height = requirementPrefab.GetComponent<RectTransform>().Height()/2;
 

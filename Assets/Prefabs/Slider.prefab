@@ -262,6 +262,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2181776059519303135, guid: 59c032d4827e745af85dbb5715c00dfb, type: 3}
+          m_TargetAssemblyTypeName: OrbitCamera, Assembly-CSharp
+          m_MethodName: UnlockOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &90038944019332484
 GameObject:
   m_ObjectHideFlags: 0

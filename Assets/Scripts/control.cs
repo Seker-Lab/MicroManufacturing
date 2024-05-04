@@ -61,6 +61,9 @@ public class control : MonoBehaviour
 
     public GameObject PhotoResistEdge;
     pauseStates prevPaused;
+    
+    // todo: move?
+    public bool peelCalled = false;
 
     public static Dictionary<materialType, materialData> materialsList = new Dictionary<materialType, materialData>();
     // Start is called before the first frame update
@@ -87,6 +90,7 @@ public class control : MonoBehaviour
         ms4.SetActive(false);
         curRegion = 0;
         offset = 15;
+        
     }
 
     void OnDestroy()
@@ -212,12 +216,15 @@ public class control : MonoBehaviour
             GameObject.Find("Canvas - HUD").GetComponent<CanvasGroup>().blocksRaycasts = true;
             GameObject.Find("Canvas - HUD").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.Find("Substrate").GetComponent<substrateControl>().subCam.SetActive(true);
+
         }
         else 
         {
             GameObject.Find("Canvas - HUD").GetComponent<CanvasGroup>().blocksRaycasts = false;
             GameObject.Find("Canvas - HUD").GetComponent<CanvasGroup>().alpha = 0;
             GameObject.Find("Substrate").GetComponent<substrateControl>().subCam.SetActive(false);
+            GameObject.Find("Main Camera").GetComponent<OrbitCamera>().UnlockOut();
+
         }
     }
 
@@ -384,12 +391,14 @@ public class control : MonoBehaviour
     {
         GameObject proc = GameObject.Find("New Process");
         proc.GetComponent<ProcessParent>().onFinishedButton();
+        GameObject.Find("Main Camera").GetComponent<OrbitCamera>().UnlockOut();
     }
 
     public void onCancelButton()
     {
         GameObject proc = GameObject.Find("New Process");
         proc.GetComponent<ProcessParent>().onCancelButton();
+        GameObject.Find("Main Camera").GetComponent<OrbitCamera>().UnlockOut();
     }
 
     public static pauseStates isPaused()
@@ -428,18 +437,7 @@ public class control : MonoBehaviour
     {
         GameObject layer = GameObject.Find("LayerStack");
         layer.GetComponent<LayerStackHolder>().startPeelProcess();
+        peelCalled = true;
     }
 
-    public void onMobileToggle() {
-
-        if (GameObject.Find("Shift"))
-        {
-            GameObject.Find("Shift").gameObject.SetActive(false);
-            GameObject.Find("Space").gameObject.SetActive(false);
-        }
-        else {
-            GameObject.Find("Shift").gameObject.SetActive(true);
-            GameObject.Find("Space").gameObject.SetActive(true);
-        }
-    }
 }

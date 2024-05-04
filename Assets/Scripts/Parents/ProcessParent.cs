@@ -20,6 +20,8 @@ public class ProcessParent : MonoBehaviour
     GameObject LiftoffButton;
     GameObject wetEtchToggle;
     GameObject schematicToggle;
+    GameObject PeelToggle;
+    GameObject CastToggle;
 
     GameObject DropdownPreset;
     GameObject DepositPreset;
@@ -28,11 +30,13 @@ public class ProcessParent : MonoBehaviour
     GameObject LiftoffPreset;
     GameObject WetEtchPreset;
     GameObject SchematicPreset;
+    GameObject PeelPreset;
+    GameObject CastPreset;
 
 
     public bool[] getButtonsToReactivate()
     {
-        return new bool[] { Dropdown, DepositButton, EtchButton, PhotoresistButton, LiftoffButton, wetEtchToggle, schematicToggle};
+        return new bool[] { Dropdown, DepositButton, EtchButton, PhotoresistButton, LiftoffButton, wetEtchToggle, schematicToggle, PeelToggle, CastToggle};
     }
 
     public void setButtonsToReactivate(bool[] buttonsToReactivate)
@@ -66,6 +70,14 @@ public class ProcessParent : MonoBehaviour
         if (buttonsToReactivate[6])
         {
             SchematicPreset = canvasMain.transform.Find("showSchematicGrid").gameObject;
+        }
+        if (buttonsToReactivate[7])
+        {
+            PeelPreset = canvasMain.transform.Find("PeelButton").gameObject;
+        }
+        if (buttonsToReactivate[8])
+        {
+            CastPreset = canvasMain.transform.Find("CastButton").gameObject;
         }
     }
 
@@ -168,7 +180,22 @@ public class ProcessParent : MonoBehaviour
         else {
             schematicToggle = GameObject.Find("showSchematicGrid");
         }
-
+        if (PeelPreset)
+        {
+            PeelToggle = PeelPreset;
+        }
+        else
+        {
+            PeelToggle = GameObject.Find("PeelButton");
+        }
+        if (CastPreset)
+        {
+            CastToggle = CastPreset;
+        }
+        else
+        {
+            CastToggle = GameObject.Find("CastButton");
+        }
 
         if (Dropdown)
         {
@@ -197,8 +224,16 @@ public class ProcessParent : MonoBehaviour
         if (schematicToggle) {
             schematicToggle.SetActive(false);
         }
-        GameObject.Find("Control").GetComponent<control>().setShowMeasureStick(true);
+        if (PeelToggle)
+        {
+            PeelToggle.SetActive(false);
+        }
+        if (CastToggle)
+        {
+            CastToggle.SetActive(false);
+        }
 
+        GameObject.Find("Control").GetComponent<control>().setShowMeasureStick(true);
     }
 
     virtual public bool CallStep(int i)
@@ -247,6 +282,14 @@ public class ProcessParent : MonoBehaviour
         {
             schematicToggle.SetActive(true);
         }
+        if (PeelToggle)
+        {
+            PeelToggle.SetActive(true);
+        }
+        if (CastToggle)
+        {
+            CastToggle.SetActive(true);
+        }
         GameObject.Find("Control").GetComponent<control>().setShowMeasureStick(false);
         Destroy(gameObject);
     }
@@ -286,6 +329,14 @@ public class ProcessParent : MonoBehaviour
         if (schematicToggle)
         {
             schematicToggle.SetActive(true);
+        }
+        if (PeelToggle)
+        {
+            PeelToggle.SetActive(true);
+        }
+        if (CastToggle)
+        {
+            CastToggle.SetActive(true);
         }
         layerStackHold.postDeleteCheckFlag = true;
         GameObject.Find("Control").GetComponent<control>().setShowMeasureStick(false);

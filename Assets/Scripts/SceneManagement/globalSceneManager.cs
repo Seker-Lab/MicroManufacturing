@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,9 +18,9 @@ public class globalSceneManager : MonoBehaviour
     {
         public BitGrid grid;
         public control.materialType materialType;
-        public layerData(BitGrid girdNew, control.materialType materialTypeNew)
+        public layerData(BitGrid gridNew, control.materialType materialTypeNew)
         {
-            grid = girdNew;
+            grid = gridNew;
             materialType = materialTypeNew;
         }
     }
@@ -108,17 +106,11 @@ public class globalSceneManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                //if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-                //{
-                    undoState();
-                //}
+                undoState();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                //if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-                //{
-                    redoState();
-                //}
+                redoState();
             }
         }
     }
@@ -217,7 +209,6 @@ public class globalSceneManager : MonoBehaviour
         int requirementIndex = lrm.curIndex;
         bool requirementClear = lrm.curClear;
 
-
         bool depositFlag = GameObject.Find("Deposit Button");
         bool etchFlag = GameObject.Find("Etch Button");
         bool photoresistFlag = GameObject.Find("Photoresist Button");
@@ -309,11 +300,12 @@ public class globalSceneManager : MonoBehaviour
         GameObject HudCanvas = GameObject.Find("Canvas - HUD");
         GameObject Holder = GameObject.Find("PhotoButtonToggleHolder");
 
-
         MainCanvas.transform.Find("Deposit Button").gameObject.SetActive(curState.activateFlags[0]);
         MainCanvas.transform.Find("Etch Button").gameObject.SetActive(curState.activateFlags[1]);
-        Holder.transform.Find("Photoresist Button").gameObject.SetActive(curState.activateFlags[2]);
-        Holder.transform.Find("Liftoff Button").gameObject.SetActive(curState.activateFlags[3]);
+        if(Holder && Holder.transform.Find("Photoresist Button"))
+            Holder.transform.Find("Photoresist Button").gameObject.SetActive(curState.activateFlags[2]);
+        if (Holder && Holder.transform.Find("Liftoff Button"))
+            Holder.transform.Find("Liftoff Button").gameObject.SetActive(curState.activateFlags[3]);
         GameObject.Find("Dropdown").GetComponent<Image>().enabled = curState.activateFlags[4];
         GameObject.Find("Dropdown").GetComponent<DropdownCustom>().visible = curState.activateFlags[4];
         MainCanvas.transform.Find("WetEtchToggle").gameObject.SetActive(curState.activateFlags[5]);
