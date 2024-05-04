@@ -123,6 +123,7 @@
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
      <Compile Include="Assets/Scripts/Checks/Level 2/checkMEA2.cs" />
+     <Compile Include="Assets/Scripts/Checks/Level5/checkDeposit.cs" />
      <Compile Include="Assets/Scripts/ProbeScript.cs" />
      <Compile Include="Assets/Scripts/Processes/ProcessIonEtch.cs" />
      <Compile Include="Assets/Scripts/UI/ToggleCustom.cs" />
@@ -181,7 +182,6 @@
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
      <Compile Include="Assets/Scripts/Processes/ProcessWetEtch.cs" />
      <Compile Include="Assets/Scripts/Tools/brushTool.cs" />
-     <Compile Include="Assets/Scripts/Checks/Level5/checkDeposit.cs" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
