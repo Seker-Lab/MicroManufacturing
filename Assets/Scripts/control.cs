@@ -63,8 +63,8 @@ public class control : MonoBehaviour
     pauseStates prevPaused;
     
     // todo: move?
-    public bool peelCalled = false;
-
+    [System.NonSerialized] public bool peelCalled = false;
+    
     public static Dictionary<materialType, materialData> materialsList = new Dictionary<materialType, materialData>();
     // Start is called before the first frame update
     void Start()
@@ -90,7 +90,6 @@ public class control : MonoBehaviour
         ms4.SetActive(false);
         curRegion = 0;
         offset = 15;
-        
     }
 
     void OnDestroy()
@@ -433,11 +432,23 @@ public class control : MonoBehaviour
         layer.GetComponent<LayerStackHolder>().startCastProcess();
     }
 
+    
     public void onPeelButton()
     {
         GameObject layer = GameObject.Find("LayerStack");
         layer.GetComponent<LayerStackHolder>().startPeelProcess();
         peelCalled = true;
+        GameObject.Find("PeelHolder").transform.GetChild(0).gameObject.SetActive(false);
+        GameObject.Find("PeelHolder").transform.GetChild(1).gameObject.SetActive(true);
+    }
+    
+    public void onClearButton()
+    {
+        GameObject.Find("PeelHolder").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("PeelHolder").transform.GetChild(1).gameObject.SetActive(false);
+        GameObject layer = GameObject.Find("LayerStack");
+        layer.GetComponent<LayerStackHolder>().startClearProcess();
+
     }
 
 }

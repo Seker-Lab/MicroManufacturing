@@ -12,19 +12,21 @@ public class checkDeposit : levelRequirementParent
         met = false;
         base.onStart();
         name = "Make a mold with the techniques you've learned.";
-        description = "Make sure you have at least one deposit.";
+        description = "Make sure you have at least one deposit or photoresist.";
         checkOutsideEdits = true;
     }
 
     public override void check()
     {
-        if (GameObject.Find("New Process"))
+        met = false;
+        GameObject np = GameObject.Find("New Process");
+        if (!np)
         {
-            met = true;
-        }
-        else
-        {
-            met = met || false;
+            if (GameObject.Find("MeshGenerator(Clone)"))
+            {
+                met = true;
+                GameObject.Find("Control").GetComponent<control>().peelCalled = false;
+            }
         }
     }
 }

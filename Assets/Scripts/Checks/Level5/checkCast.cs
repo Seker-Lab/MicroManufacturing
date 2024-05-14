@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class checkCast : levelRequirementParent
 {
@@ -16,14 +17,15 @@ public class checkCast : levelRequirementParent
 
     public override void check()
     {
-        GameObject np = GameObject.Find("New Process");
-        if (np && !met)
+        met = false;
+        foreach (Transform child in GameObject.Find("LayerStack").transform)
         {
-            if (np.GetComponent<ProcessCast>())
+            meshMaterial meshMat = child.gameObject.GetComponent<meshMaterial>();
+            if (meshMat&& meshMat.myMaterial == control.materialType.cast)
             {
-                GameObject.Find("Control").GetComponent<control>().peelCalled = false;
                 met = true;
             }
         }
+            
     }
 }

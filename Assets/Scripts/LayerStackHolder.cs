@@ -695,11 +695,11 @@ public class LayerStackHolder : MonoBehaviour
     public bool getConnectionStatus(Vector3Int start, Vector3Int end)
     {
         int numLayers = topLayer + 1;
-        Debug.Log("numLayers: " + numLayers);
+        //Debug.Log("numLayers: " + numLayers);
 
         if (topLayer < 0)
         {
-            Debug.Log("No layers");
+            //Debug.Log("No layers");
             return false;
         }
 
@@ -861,7 +861,7 @@ public class LayerStackHolder : MonoBehaviour
 
     public void flipMaterials() {
         int numLayers = topLayer + 1;
-        Debug.Log(numLayers);
+        //Debug.Log(numLayers);
         if (numLayers > 100)
         {
             numLayers = 100;
@@ -870,7 +870,7 @@ public class LayerStackHolder : MonoBehaviour
         // swap each pair
         for (int pair = 0; pair <= numLayers / 2; pair++)
         {
-            Debug.Log(pair + " " + (numLayers - pair));
+            //Debug.Log(pair + " " + (numLayers - pair));
 
             // move amount
             int layersToMove = 2 * (numLayers / 2 - pair);
@@ -973,6 +973,10 @@ public class LayerStackHolder : MonoBehaviour
         dropMaterials();
     }
 
+    public void startClearProcess()
+    {
+        clear();
+    }
 
 }
 

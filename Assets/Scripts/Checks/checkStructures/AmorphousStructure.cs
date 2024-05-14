@@ -117,14 +117,14 @@ public class AmorphousStructure : CheckStructComponent
 
             if (flagVector[1])
             {
-                BitGrid surounding = BitGrid.getBorderRegion(amorph.grid);
-                BitGrid suroundingFill = BitGrid.zeros();
+                BitGrid surrounding = BitGrid.getBorderRegion(amorph.grid);
+                BitGrid surroundingFill = BitGrid.zeros();
                 foreach (GameObject curDeposit in layers.depLayers[layerIndex])
                 {
-                    BitGrid intersection = BitGrid.intersect(curDeposit.GetComponent<meshGenerator>().grid, surounding);
+                    BitGrid intersection = BitGrid.intersect(curDeposit.GetComponent<meshGenerator>().grid, surrounding);
                     if (curDeposit.GetComponent<meshMaterial>().myMaterial == surroundingMaterial || curDeposit.GetComponent<meshMaterial>().myMaterial == this.materialType)
                     {
-                        suroundingFill = BitGrid.union(suroundingFill, intersection);
+                        surroundingFill = BitGrid.union(surroundingFill, intersection);
                         continue;
                     }
                     if(!intersection.isEmpty()){
@@ -135,7 +135,7 @@ public class AmorphousStructure : CheckStructComponent
                 }
                 if(surroundingMaterial != control.materialType.empty)
                 {
-                    if (!surounding.isEqual(suroundingFill))
+                    if (!surrounding.isEqual(surroundingFill))
                     {
                         errors.Add("Found amorph insufficient border");
                         curAmorphs.RemoveAt(i);
