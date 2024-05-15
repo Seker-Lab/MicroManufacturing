@@ -1,7 +1,9 @@
 # Micromanufacturing Game
-An educational game demonstrating key processes in micromanufacturing.
+An educational game demonstrating key processes in micromanufacturing. Forked version includes a new level 5 and UI upgrades!
 
-WEBGL Demo and Windows build: https://atrus159.itch.io/micromanufacturing-demo
+Current WebGL Demo: https://dvbuka.github.io/microsite/
+
+Original WebGL Demo and Windows build: https://atrus159.itch.io/micromanufacturing-demo
 
 ### Additional Controls:
 - Space Bar: Photomask liftoff
