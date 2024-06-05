@@ -339,6 +339,61 @@ public class LayerStackHolder : MonoBehaviour
         }
         return toReturn;
     }
+    
+    // only want to keep the snow that fell last
+    public bool depositWetLayer(control.materialType layerMaterial, BitGrid inputGrid, int newTimeOffset = 0)
+    {
+        //start with the input grid at the top layer
+        BitGrid grid = new BitGrid();
+        BitGrid lastFall = new BitGrid();
+        //grid = the snow that's still falling
+        grid.set(inputGrid);
+        
+        int curLayer = topLayer + 1;
+
+        bool toReturn = false;
+
+        //keep going down the layers until you hit the bottom
+        while (curLayer > 0)
+        {
+            //in each layer get the BitGrid of everything in the layer below
+            BitGrid thisDeposit = new BitGrid();
+            thisDeposit.set(grid);
+
+            //Find all of the surfaces that snow can fall on one layer below me, and union them together and put it in temp deposit(
+            //start with an empty grid
+            BitGrid tempDeposit = new BitGrid();
+            tempDeposit.set(BitGrid.zeros());
+
+            //go through each meshGenerator in the layer below, and add together all of their grids
+            foreach (GameObject curDeposit in depLayers[curLayer - 1])
+            {
+                tempDeposit.set(BitGrid.union(tempDeposit, curDeposit.GetComponent<meshGenerator>().grid));
+            }
+            //)
+
+            //get all of the snow that's still falling, that can land on the surfaces we just collected, and store it in thisDeposit
+            thisDeposit.set(BitGrid.intersect(tempDeposit, thisDeposit));
+
+            //if there is any intersection between the falling snow and the surfaces, make some snow with that pattern
+            if (!thisDeposit.isEmpty())
+            {
+                lastFall.set(thisDeposit);
+            }
+            
+            //subtract the snow that just fell from the snow that's still falling
+            grid.set(BitGrid.emptyIntersect(grid, thisDeposit));
+
+            if (grid.isEmpty())
+            {
+                addDeposit(curLayer, lastFall, layerMaterial, newTimeOffset);
+                return lastFall.isEmpty();
+            }
+            curLayer--;
+        }
+        addDeposit(0, grid, layerMaterial, newTimeOffset);
+        return true;
+    }
 
 
     //removes the top-most layer of a particular material from the design
@@ -812,7 +867,7 @@ public class LayerStackHolder : MonoBehaviour
 
         return crossSection;
     }
-
+    
     public bool[,,] generateMold(int depth = 3)
     {
 

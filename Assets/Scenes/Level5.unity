@@ -1169,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &261557337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1187,7 +1187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 70}
+  m_AnchoredPosition: {x: 150, y: 79.84}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261557338
@@ -1722,7 +1722,8 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 1
-  text: First, we make a mold with the materials you're already familiar with.
+  text: First, we make a mold with the materials you're already familiar with and
+    press done when finished.
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &457138294
@@ -1774,7 +1775,7 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 0
-  text: However, we can use the technique of soft photlithography!
+  text: However, we can use the technique of soft photolithography!
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &464380906
@@ -4519,7 +4520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &798846200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5188,7 +5189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 964424716}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &935613854
 MonoBehaviour:
@@ -5236,8 +5237,8 @@ Transform:
   m_LocalScale: {x: 14.5, y: 0.2, z: 14.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 479801478}
   - {fileID: 935613853}
+  - {fileID: 479801478}
   - {fileID: 1025669955}
   - {fileID: 1641189292}
   - {fileID: 763788002}
@@ -8714,7 +8715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154173091511205324, guid: 833f40f43b9da414eb53bd19e10dcc7b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7154173091511205324, guid: 833f40f43b9da414eb53bd19e10dcc7b, type: 3}
       propertyPath: m_LocalScale.x
@@ -9631,6 +9632,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615903575}
   m_CullTransparentMesh: 1
+--- !u!1 &1634407594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1634407595}
+  - component: {fileID: 1634407596}
+  m_Layer: 0
+  m_Name: checkDonePressed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1634407595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634407594}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.0193324}
+  m_LocalScale: {x: 1.1796299, y: 1.1796299, z: 1.1796299}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1762499994}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 517.9263, y: 470.90796}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1634407596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634407594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842ab44c7113d04449efd004e283b3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Create your mold and press Done when finished.
+  description: Use the techniques you already know.
+  met: 0
+  checkOutsideEdits: 0
+  donePrefab: {fileID: 2622929902477422708, guid: 344dce01aaff8400193b8b87876fb470, type: 3}
 --- !u!1 &1641189288
 GameObject:
   m_ObjectHideFlags: 0
@@ -11324,7 +11379,7 @@ MonoBehaviour:
   requirementReserveBlocks: 0100000002000000
   requirements: []
   requirementReserves:
-  - {fileID: 2058509691}
+  - {fileID: 1634407596}
   - {fileID: 786054915}
   - {fileID: 49610078}
   display: {fileID: 729504599}
@@ -11343,7 +11398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2058509690}
+  - {fileID: 1634407595}
   - {fileID: 786054914}
   - {fileID: 49610077}
   m_Father: {fileID: 0}
@@ -12689,59 +12744,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43de4d4f17648e44fbb30b30e55c8c92, type: 3}
---- !u!1 &2058509689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2058509690}
-  - component: {fileID: 2058509691}
-  m_Layer: 0
-  m_Name: checkDeposit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2058509690
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058509689}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.0193324}
-  m_LocalScale: {x: 1.1796299, y: 1.1796299, z: 1.1796299}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1762499994}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 517.9263, y: 470.90796}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2058509691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058509689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89e5222c5f6dc426497a47fc5284ee87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
-  description: 
-  met: 0
-  checkOutsideEdits: 0
 --- !u!1 &2059458289
 GameObject:
   m_ObjectHideFlags: 0

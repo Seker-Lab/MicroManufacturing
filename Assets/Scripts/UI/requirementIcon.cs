@@ -19,6 +19,7 @@ public class requirementIcon : MonoBehaviour
     {
         openHeight = 466.0f;
         closedHeight = 292.0f;
+        transform.localScale = new Vector3(0.5f, 0.5f, 0);
         descriptionText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         setOpen(false);
     }
@@ -36,6 +37,8 @@ public class requirementIcon : MonoBehaviour
 
     public void setOpen(bool openStatus)
     {
+        // showSchematicGrid check checks the state of the schematic viewer as it should not be interactable
+        // Level 1 contains a placeholder object with this name as it does not let you use the schematic feature
         if(openStatus && GameObject.Find("showSchematicGrid"))
         {
             open = true;

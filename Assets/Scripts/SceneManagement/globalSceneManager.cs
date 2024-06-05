@@ -204,10 +204,19 @@ public class globalSceneManager : MonoBehaviour
 
     public void saveSceneData()
     {
-        int dialogueIndex = TextManager.instance.i;
-        levelRequirementManager lrm = GameObject.Find("Level Requirement Manager").GetComponent<levelRequirementManager>();
-        int requirementIndex = lrm.curIndex;
-        bool requirementClear = lrm.curClear;
+        int dialogueIndex = 0;
+        int requirementIndex = 0;
+        bool requirementClear = false;
+        levelRequirementManager lrm = null;
+        
+        if (SceneManager.GetActiveScene().name != "FreePlayLevel")
+        {
+            dialogueIndex = TextManager.instance ? TextManager.instance.i : 0;
+            lrm = GameObject.Find("Level Requirement Manager")
+                .GetComponent<levelRequirementManager>();
+            requirementIndex = lrm.curIndex;
+            requirementClear = lrm.curClear;
+        }
 
         bool depositFlag = GameObject.Find("Deposit Button");
         bool etchFlag = GameObject.Find("Etch Button");
@@ -294,7 +303,8 @@ public class globalSceneManager : MonoBehaviour
     public void loadSceneData()
     {
         applyLayerData(curState.layerDatas);
-        GameObject.Find("Level Requirement Manager").GetComponent<levelRequirementManager>().setToIndex(curState.requirementIndex, curState.requirementClear);
+        if (SceneManager.GetActiveScene().name != "FreePlayLevel")
+            GameObject.Find("Level Requirement Manager").GetComponent<levelRequirementManager>().setToIndex(curState.requirementIndex, curState.requirementClear);
 
         GameObject MainCanvas = GameObject.Find("Canvas - Main");
         GameObject HudCanvas = GameObject.Find("Canvas - HUD");

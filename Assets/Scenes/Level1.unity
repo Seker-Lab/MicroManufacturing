@@ -4489,7 +4489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9136581576402116062, guid: cab92fda03e8947f8bdf03186d7eda33, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9136581576402116063, guid: cab92fda03e8947f8bdf03186d7eda33, type: 3}
       propertyPath: m_Pivot.x
@@ -4575,7 +4575,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9136581576402116060, guid: cab92fda03e8947f8bdf03186d7eda33, type: 3}
+    - {fileID: 9136581576402116061, guid: cab92fda03e8947f8bdf03186d7eda33, type: 3}
+    - {fileID: 9136581576402116034, guid: cab92fda03e8947f8bdf03186d7eda33, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cab92fda03e8947f8bdf03186d7eda33, type: 3}
 --- !u!224 &721310046 stripped
 RectTransform:
@@ -5375,7 +5378,7 @@ Transform:
   - {fileID: 1641189292}
   - {fileID: 763788002}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!111 &964424717
 Animation:
@@ -13934,7 +13937,7 @@ Transform:
   - {fileID: 4365541846313222403}
   - {fileID: 4365541846174938467}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &4365541844822485516
 RectTransform:
@@ -14230,8 +14233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842ab44c7113d04449efd004e283b3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: "Take a look around the wafer, then click the \uFFFDdone\uFFFD button."
+  description: You can move the camera with the arrow keys.
   met: 0
   checkOutsideEdits: 0
   donePrefab: {fileID: 2622929902477422708, guid: 05f9440004b295b48ac4b7fe33820f5f, type: 3}

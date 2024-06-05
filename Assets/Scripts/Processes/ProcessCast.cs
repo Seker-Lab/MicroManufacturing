@@ -9,7 +9,7 @@ public class ProcessCast : ProcessParent
     public override bool CallStep(int i)
     {
         bool toReturn = false;
-        if(layerStackHold.curMaterial == control.materialType.gold)
+        /*if(layerStackHold.curMaterial == control.materialType.gold)
         {
             toReturn = layerStackHold.depositGoldLayer(control.materialType.cast, BitGrid.ones(), i + 1);
             if (!toReturn)
@@ -17,9 +17,9 @@ public class ProcessCast : ProcessParent
                 ErrorMessage = "No chromium or gold to deposit on!";
             }
         }
-        else
+        else*/
         {
-            toReturn = layerStackHold.depositLayer(control.materialType.cast, BitGrid.ones(), i + 1);
+            toReturn = layerStackHold.depositWetLayer(control.materialType.cast, BitGrid.ones(), i + 1);
             if (!toReturn)
             {
                 ErrorMessage = "No room to deposit material!";

@@ -440,12 +440,16 @@ public class control : MonoBehaviour
         peelCalled = true;
         GameObject.Find("PeelHolder").transform.GetChild(0).gameObject.SetActive(false);
         GameObject.Find("PeelHolder").transform.GetChild(1).gameObject.SetActive(true);
+        GameObject.Find("Substrate").SetActive(false);
+        
     }
     
     public void onClearButton()
     {
         GameObject.Find("PeelHolder").transform.GetChild(0).gameObject.SetActive(true);
         GameObject.Find("PeelHolder").transform.GetChild(1).gameObject.SetActive(false);
+        GameObject.Find("Play Area").transform.GetChild(0).gameObject.SetActive(true);
+
         GameObject layer = GameObject.Find("LayerStack");
         layer.GetComponent<LayerStackHolder>().startClearProcess();
 
