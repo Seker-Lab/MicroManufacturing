@@ -1722,8 +1722,8 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 1
-  text: First, we make a mold with the materials you're already familiar with and
-    press done when finished.
+  text: First, make a mold (e.g., a pillar or a well) with the materials you're already
+    familiar with and press "Done" when finished.
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &457138294
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 0
-  text: However, we can use the technique of soft photolithography!
+  text: Instead, we use a technique known as soft lithography!
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &464380906
@@ -2433,7 +2433,8 @@ MonoBehaviour:
   - {fileID: 798846199}
   skipOnObj: 
   advanceRequirements: 0
-  text: Next, we can set PDMS over the micro-pattern.
+  text: Next, we can pour PDMS over the mold and let it set to a solid. Press Cast
+    to perform these tasks.
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &567020931
@@ -4498,7 +4499,8 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 0
-  text: The materials we've worked with so far are very important for various electronics.
+  text: The materials we've worked with so far are very important for microelectronics
+    and MEMS.
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &798846199
@@ -5257,7 +5259,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 9c4bd3dc086472d448a7deb038b601c7, type: 2}
   m_Animations: []
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!95 &964424718
@@ -8686,8 +8688,8 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 0
-  text: Polydimethylsiloxane (PDMS) is an elastomer with excellent optical, electrical
-    and mechanical properties!
+  text: Polydimethylsiloxane (PDMS) is an elastomer that is transparent, electrically
+    non-conductive, mechanically compliant, gas permeable, and biocompatible!
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1001 &1514452344
@@ -9698,7 +9700,6 @@ GameObject:
   - component: {fileID: 1641189291}
   - component: {fileID: 1641189290}
   - component: {fileID: 1641189289}
-  - component: {fileID: 1641189295}
   m_Layer: 0
   m_Name: Disk
   m_TagString: Untagged
@@ -9785,18 +9786,6 @@ Transform:
   m_Father: {fileID: 964424716}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1641189295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641189288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f91a2bc40677e34cb65febc402b9d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1646487062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9980,7 +9969,9 @@ MonoBehaviour:
   - {fileID: 1394405121}
   skipOnObj: 
   advanceRequirements: 0
-  text: Removing the PDMS mold, we're left with a stamp!
+  text: We can now remove the PDMS from the mold by pressing Peel, which creates
+    the inverse replica of our mold! Using this technique, we can create stamps,
+    channels, and many other device structures useful for biomedical applications.
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1001 &1669943247
@@ -11344,7 +11335,8 @@ MonoBehaviour:
   activates: []
   skipOnObj: 
   advanceRequirements: 0
-  text: Unfortunately, we can not photoresist PDMS.
+  text: Unfortunately, it is not easy to pattern PDMS by lift-off or etch-back like
+    for the earlier materials.
   location: {x: 0, y: -140}
   anchor: 1
 --- !u!1 &1762499992

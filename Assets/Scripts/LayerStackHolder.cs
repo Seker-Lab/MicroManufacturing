@@ -350,9 +350,7 @@ public class LayerStackHolder : MonoBehaviour
         grid.set(inputGrid);
         
         int curLayer = topLayer + 1;
-
-        bool toReturn = false;
-
+        
         //keep going down the layers until you hit the bottom
         while (curLayer > 0)
         {
@@ -399,6 +397,7 @@ public class LayerStackHolder : MonoBehaviour
     //removes the top-most layer of a particular material from the design
     public bool etchLayer(control.materialType etchMaterial, int newTimeOffset = 0)
     {
+        Debug.Log("etch layer called");
         BitGrid grid = new BitGrid();
         grid.set(BitGrid.ones());
         int curLayer = topLayer + 1;
@@ -457,16 +456,17 @@ public class LayerStackHolder : MonoBehaviour
     }
 
 
-    //removes the material from exposed sides of a particular material from the design
+    //removes the material from exposed sides of a particular material from the design (for wet etch)
     public bool etchLayerAround(control.materialType etchMaterial, int newTimeOffset = 0)
     {
+        Debug.Log("etch layer around called");
+
         BitGrid grid = new BitGrid();
         grid.set(BitGrid.ones());
         int curLayer = topLayer + 1;
         bool toReturn = false;
         while (curLayer > 0)
         {
-
             BitGrid emptySpots = new BitGrid();
             BitGrid etchedSpots = new BitGrid();
             emptySpots.set(BitGrid.zeros());
@@ -497,9 +497,10 @@ public class LayerStackHolder : MonoBehaviour
             bool anyFlag = false;
             foreach (GameObject curDeposit in depLayers[curLayer - 1])
             {
-                if (curDeposit.GetComponent<meshMaterial>().myMaterial == etchMaterial)
+                meshMaterial curMeshMaterial = curDeposit.GetComponent<meshMaterial>();
+                if (curMeshMaterial.myMaterial == etchMaterial)
                 {
-                    if (curDeposit.GetComponent<meshMaterial>().timeOffset >= 0)
+                    if (curMeshMaterial.timeOffset >= 0)
                     {
                         if (newTimeOffset < 0)
                         {
@@ -521,7 +522,6 @@ public class LayerStackHolder : MonoBehaviour
             }
 
             grid.set(BitGrid.emptyIntersect(grid, emptySpots));
-
 
             for (int i = 0; i < BitGrid.gridWidth; i++)
             {

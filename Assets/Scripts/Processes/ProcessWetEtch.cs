@@ -14,7 +14,7 @@ public class ProcessWetEtch : ProcessParent
         layerStackHold.clearDeletes();
         if (!toReturn)
         {
-            ErrorMessage = "No accessable material to etch!";
+            ErrorMessage = "No accessible material to etch!";
         }
         return toReturn;
     }

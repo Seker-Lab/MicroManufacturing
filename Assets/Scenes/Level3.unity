@@ -7057,7 +7057,6 @@ GameObject:
   - component: {fileID: 1035445988}
   - component: {fileID: 1035445987}
   - component: {fileID: 1035445986}
-  - component: {fileID: 1035445985}
   m_Layer: 0
   m_Name: Disk
   m_TagString: Untagged
@@ -7080,18 +7079,6 @@ Transform:
   m_Father: {fileID: 1548504975}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1035445985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035445983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f91a2bc40677e34cb65febc402b9d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1035445986
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9435,7 +9422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1354637781}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 524373987}
+        m_TargetAssemblyTypeName: TextManager, Assembly-CSharp
+        m_MethodName: onAdvanceButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1354637781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10518,7 +10517,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 9c4bd3dc086472d448a7deb038b601c7, type: 2}
   m_Animations: []
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!95 &1548504977
@@ -11833,7 +11832,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1647566055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 524373987}
+        m_TargetAssemblyTypeName: TextManager, Assembly-CSharp
+        m_MethodName: onBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1647566055
 MonoBehaviour:
   m_ObjectHideFlags: 0

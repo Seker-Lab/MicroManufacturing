@@ -30,7 +30,7 @@ public class levelRequirementManager : MonoBehaviour
     public GameObject requirementPrefab;
 
 
-    float displayOffset = 105.0f;
+    public float displayOffset = 110.0f;
 
     int count;
 
@@ -87,15 +87,20 @@ public class levelRequirementManager : MonoBehaviour
             Destroy(curDisplayObj);
         }
         requirementDisplayInstances.Clear();
+        display.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         count = 0;
 
         int index = 0;
 
         foreach (levelRequirementParent curRequirement in requirements)
         {
-            makePrefab(-index * displayOffset, curRequirement.name, curRequirement.description);
+            makePrefab(-index * displayOffset - 10, curRequirement.name, curRequirement.description);
             index++;
         }
+
+        float scale = 1.1f - index * 0.1f;
+        display.GetComponent<RectTransform>().localScale = new Vector3(scale, scale, 1);
+
     }
 
     public void hideDisplay()
@@ -111,15 +116,15 @@ public class levelRequirementManager : MonoBehaviour
     void makePrefab(float height, string name, string description)
     {
         count++;
-        GameObject newDisplayObj = Instantiate(requirementPrefab);
-        newDisplayObj.transform.SetParent(display.transform);
-        newDisplayObj.transform.SetPositionAndRotation(display.transform.position + new Vector3(0, height, 0), Quaternion.identity);
+        GameObject newDisplayObj = Instantiate(requirementPrefab, display.transform);
+        newDisplayObj.transform.SetPositionAndRotation(display.transform.position, Quaternion.identity);
         newDisplayObj.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = name;
         newDisplayObj.transform.GetComponent<requirementIcon>().description = description;
         newDisplayObj.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = count.ToString();
         newDisplayObj.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().color = Color.red;
         requirementDisplayInstances.Add(newDisplayObj);
         newDisplayObj.transform.SetAsFirstSibling();
+        newDisplayObj.GetComponent<RectTransform>().anchoredPosition = new Vector2(-10,height);
     }
 
 

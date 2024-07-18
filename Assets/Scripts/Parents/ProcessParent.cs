@@ -95,6 +95,7 @@ public class ProcessParent : MonoBehaviour
         bool any = false;
         while(i < nSteps)
         {
+            Debug.Log(i);
             any |= CallStep(i);
             i++;
         }
